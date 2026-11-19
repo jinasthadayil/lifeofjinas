@@ -36,6 +36,7 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
 h1,h2{margin:0;letter-spacing:-.03em;text-wrap:balance}
 
+header{position:relative;z-index:1}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
 .mark{font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
 .pill{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--sun);color:var(--white);font:600 16px/1 var(--font);padding:17px 28px;text-decoration:none;transition:background .2s}
@@ -45,10 +46,10 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 /* Opening words */
 .intro{position:relative;min-height:clamp(460px,48vw,720px);display:flex;align-items:center;padding-block:clamp(24px,4vw,56px)}
 .intro-text{position:relative;max-width:min(620px,52%)}
-.hero-art{position:absolute;top:0;bottom:0;right:calc(50% - 50vw);aspect-ratio:1161/1355;z-index:-1;background:url(images/artcher-backdrop.jpg) center/cover no-repeat;
+.hero-art{position:absolute;top:-79px;bottom:0;right:calc(50% - 50vw);aspect-ratio:1161/1355;z-index:-1;background:url(images/artcher-backdrop.jpg) center/cover no-repeat;
   -webkit-mask-image:linear-gradient(to left,#000 55%,transparent 100%),linear-gradient(to bottom,#000 78%,transparent 100%);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(to left,#000 55%,transparent 100%),linear-gradient(to bottom,#000 78%,transparent 100%);mask-composite:intersect}
-@media (max-width:760px){.intro{display:grid;min-height:0;gap:8px;padding-top:0}.intro-text{max-width:none}.hero-art{position:static;order:-1;margin-inline:calc(50% - 50vw);z-index:auto;
+@media (max-width:760px){body.home .mark{color:#fff;text-shadow:0 1px 10px #000a}.intro{display:grid;min-height:0;gap:8px;padding-top:0}.intro-text{max-width:none}.hero-art{position:static;order:-1;margin-inline:calc(50% - 50vw);margin-top:-79px;z-index:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 65%,transparent 100%);mask-image:linear-gradient(to bottom,#000 65%,transparent 100%)}}
 .intro blockquote{margin:0;font-size:clamp(26px,3.6vw,42px);line-height:1.25;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
 .intro cite{display:block;margin-top:14px;font-style:normal;font-size:16px;font-weight:500;color:var(--soft)}
@@ -232,6 +233,7 @@ const PAINTINGS = [
     const id=location.hash.slice(1), p=PAINTINGS.find(x=>x.id===id);
     const g=document.getElementById('gallery'), v=document.getElementById('painting');
     document.getElementById('top-inquire').href=mail(p&&!isSold(p)&&!isSample(p)?p.title:"Paintings by Jinas");
+    document.body.classList.toggle('home',!p);
     if(!p){g.hidden=false;v.hidden=true;document.title="Life of Jinas";return}
     const facts=[["Artist","Jinas"],["Year",p.year],["Medium",p.medium],["Size",p.size],["Edition",isSample(p)?"":"Original, one of one"],["Status",p.status]].filter(f=>f[1]);
     v.innerHTML=`
