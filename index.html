@@ -38,7 +38,7 @@ h1,h2{margin:0;letter-spacing:-.03em;text-wrap:balance}
 
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
 .mark{font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
-.pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--sun);color:var(--white);font:600 16px/1 var(--font);padding:17px 28px;text-decoration:none;transition:background .2s}
+.pill{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--sun);color:var(--white);font:600 16px/1 var(--font);padding:17px 28px;text-decoration:none;transition:background .2s}
 .pill:hover{background:var(--sun-deep)}
 .pill.small{padding:12px 20px;font-size:15px}
 
@@ -87,6 +87,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 1
 footer a{text-decoration:none;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
 footer .links{display:flex;flex-wrap:wrap;gap:8px 24px}
 
+/* Inquiry panel */
+dialog.ask{border:0;border-radius:20px;padding:28px;width:min(440px,calc(100vw - 32px));color:var(--ink);font-family:var(--font);box-shadow:0 24px 60px rgba(0,0,0,.18)}
+dialog.ask::backdrop{background:rgba(30,26,22,.45)}
+.ask h2{font-size:24px;line-height:1.2;padding-right:32px}
+.ask p{margin:8px 0 20px;color:var(--soft);font-size:15px}
+.ask .addr{display:block;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.ask .opts{display:grid;gap:10px}
+.ask .opts .pill{width:100%}
+.pill.ghost{background:var(--white);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.pill.ghost:hover{background:var(--tile)}
+.ask .x{position:absolute;top:14px;right:14px;width:40px;height:40px;border:0;border-radius:999px;background:none;font-size:24px;line-height:1;color:var(--soft);cursor:pointer}
+.ask .x:hover{background:var(--tile);color:var(--ink)}
+
 @media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px}.work{grid-template-columns:minmax(0,1fr)}.work .tile{max-width:560px}}
 @media (max-width:520px){.grid{grid-template-columns:minmax(0,1fr);gap:40px}}
 @media (prefers-reduced-motion:reduce){.pill,.tile img,.tile canvas{transition:none}}
@@ -96,7 +109,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 24px}
 <header>
   <div class="wrap">
     <a class="mark" href="#">Life of Jinas</a>
-    <a class="pill small" id="top-inquire" href="mailto:jinas.official@gmail.com">Inquire</a>
+    <a class="pill small inquire" id="top-inquire" href="mailto:jinas.official@gmail.com">Inquire</a>
   </div>
 </header>
 
@@ -111,6 +124,17 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 24px}
   </section>
   <section id="painting" hidden></section>
 </main>
+
+<dialog class="ask" id="ask" aria-labelledby="ask-title">
+  <button class="x" type="button" aria-label="Close" data-close>&times;</button>
+  <h2 id="ask-title">Inquire</h2>
+  <p>Write to Jinas at <span class="addr" id="ask-addr"></span></p>
+  <div class="opts">
+    <a class="pill" id="ask-gmail" target="_blank" rel="noopener">Open in Gmail</a>
+    <a class="pill ghost" id="ask-mail">Open mail app</a>
+    <button class="pill ghost" type="button" id="ask-copy">Copy email address</button>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap">
@@ -127,9 +151,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 24px}
    Leave a detail as "" to hide it on the page.
    - id:     short web name, lowercase with hyphens (the page address)
    - image:  the photo's file name in the repository, e.g. "the-observer.jpg"
-   - status: "Available", "Sold" or "Sample"
-   SAMPLES: blocks marked sample: true are shown as samples (no price,
-   no inquiry button). Remove "sample: true," and set a status to sell one.
+   - status: "Available", "Sold out" or "Sample"
+   Status containing "Sold" hides the painting's Inquire button.
+   Add sample: true to a block to show it as a sample instead.
    ===================================================================== */
 const EMAIL = "jinas.official@gmail.com";
 const PAINTINGS = [
@@ -138,7 +162,7 @@ const PAINTINGS = [
     title: "The Observer",
     line: "Five years of spiritual observation",
     price: "USD 548,770",
-    status: "Available",
+    status: "Sold out",
     year: "", medium: "", size: "",
     image: "",
     description: [
@@ -146,11 +170,11 @@ const PAINTINGS = [
       "It is an original, one of one, made to be lived with and reflected on."
     ]
   },
-  { id: "the-cosmic-whale", sample: true, title: "The Cosmic Whale", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/the-cosmic-whale.jpg", description: ["A whale made of night sky drifts past the Earth."] },
-  { id: "the-secret-lover", sample: true, title: "The Secret Lover", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/the-secret-lover.jpg", description: ["In a kelp forest, a mermaid rises toward a diver, holding out a glowing shell."] },
-  { id: "deeper-into-your-mind", sample: true, title: "Deeper Into Your Mind", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/deeper-into-your-mind.jpg", description: ["A boy meditates in the deep sea, surrounded by glowing jellyfish."] },
-  { id: "artcher", sample: true, title: "Artcher", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/artcher.jpg", description: ["An archer whose quiver holds paintbrushes, wearing armour marked Power, Humble, Resilience, Fearless, Message and Gratitude."] },
-  { id: "the-watchful", sample: true, title: "The Watchful", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/the-watchful.jpg", description: ["A cosmic eye full of stars, with the words \u201cevery effort counts.\u201d"] }
+  { id: "the-cosmic-whale", title: "The Cosmic Whale", line: "", price: "", status: "Sold out", year: "", medium: "", size: "", image: "images/the-cosmic-whale.jpg", description: ["A whale made of night sky drifts past the Earth."] },
+  { id: "the-secret-lover", title: "The Secret Lover", line: "", price: "", status: "Sold out", year: "", medium: "", size: "", image: "images/the-secret-lover.jpg", description: ["In a kelp forest, a mermaid rises toward a diver, holding out a glowing shell."] },
+  { id: "deeper-into-your-mind", title: "Deeper Into Your Mind", line: "", price: "", status: "Sold out", year: "", medium: "", size: "", image: "images/deeper-into-your-mind.jpg", description: ["A boy meditates in the deep sea, surrounded by glowing jellyfish."] },
+  { id: "artcher", title: "Artcher", line: "", price: "", status: "Sold out", year: "", medium: "", size: "", image: "images/artcher.jpg", description: ["An archer whose quiver holds paintbrushes, wearing armour marked Power, Humble, Resilience, Fearless, Message and Gratitude."] },
+  { id: "the-watchful", title: "The Watchful", line: "", price: "", status: "Sold out", year: "", medium: "", size: "", image: "images/the-watchful.jpg", description: ["A cosmic eye full of stars, with the words \u201cevery effort counts.\u201d"] }
 ];
 /* ===================================================================== */
 
@@ -201,7 +225,7 @@ const PAINTINGS = [
   function show(){
     const id=location.hash.slice(1), p=PAINTINGS.find(x=>x.id===id);
     const g=document.getElementById('gallery'), v=document.getElementById('painting');
-    document.getElementById('top-inquire').href=mail(p?p.title:"Paintings by Jinas");
+    document.getElementById('top-inquire').href=mail(p&&!isSold(p)&&!isSample(p)?p.title:"Paintings by Jinas");
     if(!p){g.hidden=false;v.hidden=true;document.title="Life of Jinas";return}
     const facts=[["Artist","Jinas"],["Year",p.year],["Medium",p.medium],["Size",p.size],["Edition",isSample(p)?"":"Original, one of one"],["Status",p.status]].filter(f=>f[1]);
     v.innerHTML=`
@@ -214,13 +238,35 @@ const PAINTINGS = [
           <div class="desc">${(p.description||[]).map(d=>`<p>${esc(d)}</p>`).join('')}</div>
           <dl class="facts">${facts.map(f=>`<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('')}</dl>
           <div class="price">${esc(p.price)}</div>
-          ${isSold(p)||isSample(p)?'':`<div><a class="pill" href="${mail(p.title)}">Inquire about ${esc(p.title)}</a></div>
+          ${isSold(p)||isSample(p)?'':`<div><a class="pill inquire" href="${mail(p.title)}">Inquire about ${esc(p.title)}</a></div>
           <p class="note">Shipping, insurance and taxes are arranged separately.</p>`}
         </div>
       </div>`;
     g.hidden=true;v.hidden=false;document.title=p.title+" · Life of Jinas";scrollTo(0,0);
   }
   addEventListener('hashchange',show);show();
+
+  /* Inquiry panel: mailto alone does nothing on computers without a mail app */
+  const ask=document.getElementById('ask');
+  document.getElementById('ask-addr').textContent=EMAIL;
+  const copyBtn=document.getElementById('ask-copy');
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a.inquire');
+    if(!a||typeof ask.showModal!=='function')return;
+    e.preventDefault();
+    const subject=decodeURIComponent((a.href.split('subject=')[1]||'').split('&')[0])||"Inquiry: Paintings by Jinas";
+    const about=subject.replace(/^Inquiry: /,'');
+    document.getElementById('ask-title').textContent=about==="Paintings by Jinas"?"Inquire":"Inquire about "+about;
+    document.getElementById('ask-gmail').href="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(EMAIL)+"&su="+encodeURIComponent(subject);
+    document.getElementById('ask-mail').href=mail(about);
+    copyBtn.textContent="Copy email address";
+    ask.showModal();
+  });
+  copyBtn.addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(EMAIL);copyBtn.textContent="Copied";}
+    catch(_){copyBtn.textContent=EMAIL;}
+  });
+  ask.addEventListener('click',e=>{if(e.target===ask||e.target.closest('[data-close]'))ask.close()});
 })();
 </script>
 
