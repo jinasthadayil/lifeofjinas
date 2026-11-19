@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Original paintings by Jinas, each one an observation about life. Available by private inquiry.">
+<link rel="canonical" href="https://www.lifeofjinas.com/">
+<meta property="og:title" content="Life of Jinas · Paintings">
+<meta property="og:description" content="Original paintings by Jinas, each one an observation about life.">
+<meta property="og:url" content="https://www.lifeofjinas.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Life of Jinas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap">
+<style>
+/* Layout: a clean, uniform gallery grid. Every painting gets the same 4:5 tile and the same label below it. Each painting opens its own page. One font, Inter. */
+:root{
+  --white:#ffffff;
+  --ink:#2d2a26;
+  --soft:#6b655e;
+  --line:#ece6df;
+  --tile:#f3f0ec;
+  --sun:#f26b3a;
+  --sun-deep:#d9541f;
+  --font:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
+h1,h2{margin:0;letter-spacing:-.03em;text-wrap:balance}
+
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.mark{font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
+.pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--sun);color:var(--white);font:600 16px/1 var(--font);padding:17px 28px;text-decoration:none;transition:background .2s}
+.pill:hover{background:var(--sun-deep)}
+.pill.small{padding:12px 20px;font-size:15px}
+
+/* Opening words */
+.intro{padding-block:clamp(32px,5vw,72px) clamp(32px,4vw,56px);max-width:820px}
+.intro blockquote{margin:0;font-size:clamp(26px,3.6vw,42px);line-height:1.25;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+.intro cite{display:block;margin-top:14px;font-style:normal;font-size:16px;font-weight:500;color:var(--soft)}
+
+/* Grid */
+.grid-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-block:20px;border-top:1px solid var(--line)}
+.grid-head h2{font-size:20px;font-weight:700;letter-spacing:-.015em}
+.grid-head span{color:var(--soft);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 28px;padding-block:8px clamp(56px,8vw,104px)}
+.card{display:grid;grid-template-rows:auto 1fr;gap:14px;text-decoration:none}
+.tile{position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:var(--tile)}
+.tile img,.tile canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.card:hover .tile img,.card:hover .tile canvas{transform:scale(1.03)}
+.tile .empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:#8e867c;font-size:14px;font-weight:500}
+.label{display:grid;gap:2px;align-content:start}
+.label h3{margin:0;font-size:18px;font-weight:700;letter-spacing:-.015em}
+.label .sub{color:var(--soft);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.label .row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px}
+.label .price{font-weight:600;font-variant-numeric:tabular-nums}
+.chip{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap;background:#e6f4ea;color:#1f6b3a}
+.chip.sold{background:#f1ecec;color:#8a3b3b}
+.chip.sample{background:#efedf7;color:#4b4579}
+
+/* Painting page */
+.back{display:inline-block;margin-top:8px;font-weight:600;font-size:15px;color:var(--soft);text-decoration:none}
+.back:hover{color:var(--ink)}
+.work{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:start;padding-block:clamp(20px,3vw,32px) clamp(56px,8vw,104px)}
+.work .tile{border-radius:18px}
+.detail{display:grid;gap:22px;min-width:0}
+.detail h1{font-size:clamp(38px,5vw,60px);line-height:1.02;font-weight:800}
+.detail .by{margin:-10px 0 0;font-size:19px;color:var(--soft)}
+.detail .price{font-size:clamp(26px,2.8vw,32px);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+dl.facts{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:0;padding-block:18px;border-block:1px solid var(--line);font-size:16px}
+dl.facts dt{color:var(--soft)}
+dl.facts dd{margin:0;font-weight:500}
+.desc{display:grid;gap:14px;max-width:60ch}
+.desc p{margin:0}
+.note{margin:0;font-size:14px;color:var(--soft)}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding-block:28px;font-size:15px;color:var(--soft)}
+footer a{text-decoration:none;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px}.work{grid-template-columns:minmax(0,1fr)}.work .tile{max-width:560px}}
+@media (max-width:520px){.grid{grid-template-columns:minmax(0,1fr);gap:40px}}
+@media (prefers-reduced-motion:reduce){.pill,.tile img,.tile canvas{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="mark" href="#">Life of Jinas</a>
+    <a class="pill small" id="top-inquire" href="mailto:jinas.official@gmail.com">Inquire</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="gallery">
+    <div class="intro">
+      <blockquote>Painting, to me, is a fascinating form of expression. It flows when I truly allow it to.</blockquote>
+      <cite>Jinas</cite>
+    </div>
+    <div class="grid-head"><h2>Paintings</h2><span id="count"></span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section id="painting" hidden></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Life of Jinas</span>
+    <a href="mailto:jinas.official@gmail.com">jinas.official@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   THE PAINTINGS
+   To add a painting: copy one block { ... }, paste it after the last one
+   (with a comma between blocks), and fill it in.
+   Leave a detail as "" to hide it on the page.
+   - id:     short web name, lowercase with hyphens (the page address)
+   - image:  the photo's file name in the repository, e.g. "the-observer.jpg"
+   - status: "Available", "Sold" or "Sample"
+   SAMPLES: the five blocks marked sample: true are placeholders with
+   generated pictures. Delete each one when a real painting replaces it.
+   ===================================================================== */
+const EMAIL = "jinas.official@gmail.com";
+const PAINTINGS = [
+  {
+    id: "the-observer",
+    title: "The Observer",
+    line: "Five years of spiritual observation",
+    price: "USD 548,770",
+    status: "Available",
+    year: "", medium: "", size: "",
+    image: "",
+    description: [
+      "The Observer comes from five years of deep spiritual observation. The painting holds what those years revealed.",
+      "It is an original, one of one, made to be lived with and reflected on."
+    ]
+  },
+  { id: "sample-1", sample: true, seed: 10, title: "First Light", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
+  { id: "sample-2", sample: true, seed: 21, title: "Still Water", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
+  { id: "sample-3", sample: true, seed: 32, title: "The Long Road", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
+  { id: "sample-4", sample: true, seed: 43, title: "Quiet Hour", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
+  { id: "sample-5", sample: true, seed: 54, title: "Inner Room", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] }
+];
+/* ===================================================================== */
+
+(function(){
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const mail=t=>`mailto:${EMAIL}?subject=${encodeURIComponent("Inquiry: "+t)}`;
+  const isSold=p=>/sold/i.test(p.status), isSample=p=>!!p.sample;
+
+  /* Generated abstract pictures for the sample entries */
+  const PALETTES=[
+    ["#e9dcc7","#c9874f","#2f3b4c","#f2c14e","#8a5a44"],
+    ["#d7e3e6","#4f7c8a","#1f2f3a","#e8d8b8","#9bb7b0"],
+    ["#efe3d3","#a64b2a","#3b2a24","#d9a05b","#6d7b5a"],
+    ["#e4e0ec","#6c5b8f","#22203a","#c9a3b9","#f0d9a8"],
+    ["#ece6dc","#2e5e4e","#1b2421","#c8b273","#8fa98f"]
+  ];
+  const cache={};
+  function art(p){
+    if(cache[p.id])return cache[p.id];
+    let s=p.seed||1;const r=()=>((s=(s*16807)%2147483647)/2147483647);
+    const pal=PALETTES[(p.seed||0)%PALETTES.length];
+    const c=document.createElement('canvas');c.width=800;c.height=1000;const x=c.getContext('2d');
+    const g=x.createLinearGradient(0,0,0,1000);g.addColorStop(0,pal[0]);g.addColorStop(1,pal[3]);x.fillStyle=g;x.fillRect(0,0,800,1000);
+    const hz=420+r()*300;x.fillStyle=pal[4];x.globalAlpha=.85;x.fillRect(0,hz,800,1000-hz);
+    x.globalAlpha=.9;x.fillStyle=pal[1];x.beginPath();x.arc(200+r()*400,150+r()*(hz-250),70+r()*110,0,7);x.fill();
+    for(let i=0;i<5;i++){x.globalAlpha=.25+r()*.4;x.fillStyle=pal[2];x.beginPath();const y=hz+40+r()*(1000-hz-80);x.ellipse(r()*800,y,120+r()*260,14+r()*40,(r()-.5)*.2,0,7);x.fill()}
+    for(let i=0;i<1400;i++){x.globalAlpha=r()*.06;x.strokeStyle=pal[Math.floor(r()*5)];x.lineWidth=2+r()*8;const px=r()*800,py=r()*1000,a=(r()-.5)*.6;x.beginPath();x.moveTo(px,py);x.lineTo(px+Math.cos(a)*50,py+Math.sin(a)*50);x.stroke()}
+    x.globalAlpha=1;
+    return cache[p.id]=c.toDataURL('image/jpeg',.85);
+  }
+  const pic=p=>p.image?`<img src="${esc(p.image)}" alt="${esc(p.title)} by Jinas" loading="lazy">`
+    :isSample(p)?`<img src="${art(p)}" alt="Sample picture">`
+    :`<span class="empty">Photograph to be added</span>`;
+  const chip=p=>`<span class="chip${isSold(p)?' sold':isSample(p)?' sample':''}">${esc(p.status)}</span>`;
+  const sub=p=>[p.year,p.medium].filter(Boolean).join(' · ')||p.line||'';
+
+  document.getElementById('count').textContent=PAINTINGS.length+' works';
+  document.getElementById('grid').innerHTML=PAINTINGS.map(p=>`
+    <a class="card" href="#${esc(p.id)}">
+      <div class="tile">${pic(p)}</div>
+      <div class="label">
+        <h3>${esc(p.title)}</h3>
+        <span class="sub">${esc(sub(p))}</span>
+        <div class="row"><span class="price">${esc(p.price)}</span>${chip(p)}</div>
+      </div>
+    </a>`).join('');
+
+  function show(){
+    const id=location.hash.slice(1), p=PAINTINGS.find(x=>x.id===id);
+    const g=document.getElementById('gallery'), v=document.getElementById('painting');
+    document.getElementById('top-inquire').href=mail(p?p.title:"Paintings by Jinas");
+    if(!p){g.hidden=false;v.hidden=true;document.title="Life of Jinas";return}
+    const facts=[["Artist","Jinas"],["Year",p.year],["Medium",p.medium],["Size",p.size],["Edition",isSample(p)?"":"Original, one of one"],["Status",p.status]].filter(f=>f[1]);
+    v.innerHTML=`
+      <a class="back" href="#">← All paintings</a>
+      <div class="work">
+        <div class="tile">${pic(p)}</div>
+        <div class="detail">
+          <h1>${esc(p.title)}</h1>
+          <p class="by">Jinas</p>
+          <div class="desc">${(p.description||[]).map(d=>`<p>${esc(d)}</p>`).join('')}</div>
+          <dl class="facts">${facts.map(f=>`<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('')}</dl>
+          <div class="price">${esc(p.price)}</div>
+          ${isSold(p)||isSample(p)?'':`<div><a class="pill" href="${mail(p.title)}">Inquire about ${esc(p.title)}</a></div>
+          <p class="note">Shipping, insurance and taxes are arranged separately.</p>`}
+        </div>
+      </div>`;
+    g.hidden=true;v.hidden=false;document.title=p.title+" · Life of Jinas";scrollTo(0,0);
+  }
+  addEventListener('hashchange',show);show();
+})();
+</script>
+
+</body>
+</html>
