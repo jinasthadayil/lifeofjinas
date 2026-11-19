@@ -113,10 +113,14 @@ dialog.ask::backdrop{background:rgba(30,26,22,.45)}
 @media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px}.work{grid-template-columns:minmax(0,1fr)}.work .tile{max-width:560px}}
 @media (max-width:520px){.grid{grid-template-columns:minmax(0,1fr);gap:40px}}
 @media (prefers-reduced-motion:reduce){.pill,.tile img,.tile canvas{transition:none}}
-/* Desktop hero: quote always three lines; the painting's fade starts where it ends */
+/* Desktop hero ("rise"): the wide painting fills the top, fades to white through the cape, and the quote rises out of the fade */
 @media (min-width:761px){
-  .intro{--fs:clamp(26px,3.5vw,56px);--qw:calc(var(--fs) * 15.6)}
-  .intro blockquote{font-size:var(--fs);width:var(--qw);text-wrap:balance}
+  body.home .mark{color:#fff;text-shadow:0 1px 10px #000a}
+  .intro{--fs:clamp(26px,3.5vw,56px);--qw:calc(var(--fs) * 15.6);display:flex;flex-direction:column;align-items:center;min-height:0;padding:0 0 clamp(40px,5vw,72px);text-align:center}
+  .hero-art{position:relative;z-index:-1;order:-1;align-self:stretch;top:auto;bottom:auto;left:auto;right:auto;margin:-79px calc(50% - 50vw) 0;aspect-ratio:1672/941;
+    background:url(images/artcher-wide.jpg) center/cover no-repeat;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1.000) 28.0%,rgba(0,0,0,0.999) 30.0%,rgba(0,0,0,0.991) 32.0%,rgba(0,0,0,0.973) 34.0%,rgba(0,0,0,0.942) 36.0%,rgba(0,0,0,0.896) 38.0%,rgba(0,0,0,0.837) 40.0%,rgba(0,0,0,0.765) 42.0%,rgba(0,0,0,0.683) 44.0%,rgba(0,0,0,0.593) 46.0%,rgba(0,0,0,0.500) 48.0%,rgba(0,0,0,0.407) 50.0%,rgba(0,0,0,0.317) 52.0%,rgba(0,0,0,0.235) 54.0%,rgba(0,0,0,0.163) 56.0%,rgba(0,0,0,0.104) 58.0%,rgba(0,0,0,0.058) 60.0%,rgba(0,0,0,0.027) 62.0%,rgba(0,0,0,0.009) 64.0%,rgba(0,0,0,0.001) 66.0%,rgba(0,0,0,0.000) 68.0%);mask-image:linear-gradient(to bottom,rgba(0,0,0,1.000) 28.0%,rgba(0,0,0,0.999) 30.0%,rgba(0,0,0,0.991) 32.0%,rgba(0,0,0,0.973) 34.0%,rgba(0,0,0,0.942) 36.0%,rgba(0,0,0,0.896) 38.0%,rgba(0,0,0,0.837) 40.0%,rgba(0,0,0,0.765) 42.0%,rgba(0,0,0,0.683) 44.0%,rgba(0,0,0,0.593) 46.0%,rgba(0,0,0,0.500) 48.0%,rgba(0,0,0,0.407) 50.0%,rgba(0,0,0,0.317) 52.0%,rgba(0,0,0,0.235) 54.0%,rgba(0,0,0,0.163) 56.0%,rgba(0,0,0,0.104) 58.0%,rgba(0,0,0,0.058) 60.0%,rgba(0,0,0,0.027) 62.0%,rgba(0,0,0,0.009) 64.0%,rgba(0,0,0,0.001) 66.0%,rgba(0,0,0,0.000) 68.0%)}
+  .intro-text{margin-top:-19vw}
+  .intro blockquote{font-size:var(--fs);width:var(--qw);max-width:100%;text-wrap:balance}
 }
 </style>
 </head>
