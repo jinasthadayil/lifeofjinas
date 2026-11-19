@@ -153,7 +153,6 @@ dialog.ask::backdrop{background:rgba(30,26,22,.45)}
   <p>Write to Jinas at <span class="addr" id="ask-addr"></span></p>
   <div class="opts">
     <a class="pill" id="ask-gmail" target="_blank" rel="noopener">Open in Gmail</a>
-    <a class="pill ghost" id="ask-mail">Open mail app</a>
     <button class="pill ghost" type="button" id="ask-copy">Copy email address</button>
   </div>
 </dialog>
@@ -278,7 +277,6 @@ const PAINTINGS = [
     const about=subject.replace(/^Inquiry: /,'');
     document.getElementById('ask-title').textContent=about==="Paintings by Jinas"?"Inquire":"Inquire about "+about;
     document.getElementById('ask-gmail').href="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(EMAIL)+"&su="+encodeURIComponent(subject);
-    document.getElementById('ask-mail').href=mail(about);
     copyBtn.textContent="Copy email address";
     ask.showModal();
   });
