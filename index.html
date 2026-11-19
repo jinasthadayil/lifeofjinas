@@ -31,7 +31,8 @@
 body{margin:0;overflow-x:clip;background:var(--white);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%}
 [hidden]{display:none!important}
-.wrap{max-width:2000px;margin:0 auto;padding-left:max(20px,5vw,env(safe-area-inset-left,0px));padding-right:max(20px,5vw,env(safe-area-inset-right,0px))}
+.wrap{max-width:2000px;margin:0 auto;padding-left:max(20px,7vw,env(safe-area-inset-left,0px));padding-right:max(20px,7vw,env(safe-area-inset-right,0px))}
+@media (max-width:760px){.wrap{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
 h1,h2{margin:0;letter-spacing:-.03em;text-wrap:balance}
@@ -48,9 +49,9 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 .intro-text{position:relative}
 .hero-art{position:absolute;z-index:-1;top:-79px;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);
   background:
-    linear-gradient(90deg,#fff 0,#fff 44%,rgba(255,255,255,0.998) 46.1%,rgba(255,255,255,0.984) 48.2%,rgba(255,255,255,0.951) 50.4%,rgba(255,255,255,0.896) 52.5%,rgba(255,255,255,0.820) 54.6%,rgba(255,255,255,0.725) 56.8%,rgba(255,255,255,0.616) 58.9%,rgba(255,255,255,0.500) 61.0%,rgba(255,255,255,0.384) 63.1%,rgba(255,255,255,0.275) 65.2%,rgba(255,255,255,0.180) 67.4%,rgba(255,255,255,0.104) 69.5%,rgba(255,255,255,0.049) 71.6%,rgba(255,255,255,0.016) 73.8%,rgba(255,255,255,0.002) 75.9%,rgba(255,255,255,0.000) 78.0%),
+    linear-gradient(90deg,#fff 0,#fff 48%,rgba(255,255,255,0.998) 50.0%,rgba(255,255,255,0.984) 52.0%,rgba(255,255,255,0.951) 54.0%,rgba(255,255,255,0.896) 56.0%,rgba(255,255,255,0.820) 58.0%,rgba(255,255,255,0.725) 60.0%,rgba(255,255,255,0.616) 62.0%,rgba(255,255,255,0.500) 64.0%,rgba(255,255,255,0.384) 66.0%,rgba(255,255,255,0.275) 68.0%,rgba(255,255,255,0.180) 70.0%,rgba(255,255,255,0.104) 72.0%,rgba(255,255,255,0.049) 74.0%,rgba(255,255,255,0.016) 76.0%,rgba(255,255,255,0.002) 78.0%,rgba(255,255,255,0.000) 80.0%),
     linear-gradient(to bottom,rgba(255,255,255,0) 64%,rgba(255,255,255,0.002) 66.2%,rgba(255,255,255,0.016) 68.5%,rgba(255,255,255,0.049) 70.8%,rgba(255,255,255,0.104) 73.0%,rgba(255,255,255,0.180) 75.2%,rgba(255,255,255,0.275) 77.5%,rgba(255,255,255,0.384) 79.8%,rgba(255,255,255,0.500) 82.0%,rgba(255,255,255,0.616) 84.2%,rgba(255,255,255,0.725) 86.5%,rgba(255,255,255,0.820) 88.8%,rgba(255,255,255,0.896) 91.0%,rgba(255,255,255,0.951) 93.2%,rgba(255,255,255,0.984) 95.5%,rgba(255,255,255,0.998) 97.8%,rgba(255,255,255,1.000) 100.0%),
-    url(images/artcher-backdrop.jpg) right -3vw center/auto 110% no-repeat #fff}
+    url(images/artcher-backdrop.jpg) right center/auto 102% no-repeat #fff}
 @media (max-width:760px){body.home .mark{color:#fff;text-shadow:0 1px 10px #000a}.intro{display:grid;min-height:0;gap:8px;padding-top:0}.intro-text{max-width:none}.hero-art{position:static;order:-1;width:auto;aspect-ratio:1161/1355;background:url(images/artcher-backdrop.jpg) center/100% 100% no-repeat;margin-inline:calc(50% - 50vw);margin-top:-79px;z-index:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 65%,transparent 100%);mask-image:linear-gradient(to bottom,#000 65%,transparent 100%)}}
 .intro blockquote{margin:0;font-size:clamp(26px,3.6vw,42px);line-height:1.25;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
@@ -114,7 +115,7 @@ dialog.ask::backdrop{background:rgba(30,26,22,.45)}
 @media (prefers-reduced-motion:reduce){.pill,.tile img,.tile canvas{transition:none}}
 /* Desktop hero: quote always three lines; the painting's fade starts where it ends */
 @media (min-width:761px){
-  .intro{--fs:clamp(24px,2.9vw,42px);--qw:calc(var(--fs) * 15.6)}
+  .intro{--fs:clamp(26px,3.5vw,56px);--qw:calc(var(--fs) * 15.6)}
   .intro blockquote{font-size:var(--fs);width:var(--qw);text-wrap:balance}
 }
 </style>
