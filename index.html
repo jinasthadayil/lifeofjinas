@@ -43,12 +43,11 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 .pill.small{padding:12px 20px;font-size:15px}
 
 /* Opening words */
-.backdrop{position:absolute;top:0;right:0;width:min(760px,62vw);aspect-ratio:1161/1355;z-index:-1;pointer-events:none;
-  background:url(images/artcher-backdrop.jpg) center top/cover no-repeat;opacity:.34;
-  -webkit-mask-image:radial-gradient(ellipse 75% 70% at 70% 35%,#000 30%,transparent 72%);mask-image:radial-gradient(ellipse 75% 70% at 70% 35%,#000 30%,transparent 72%)}
-@media (max-width:700px){.backdrop{width:100vw;opacity:.24}}
-.intro blockquote,.intro cite{text-shadow:0 0 2px #fff,0 0 14px #fff,0 0 28px #fff}
-.intro{padding-block:clamp(32px,5vw,72px) clamp(32px,4vw,56px);max-width:820px}
+.intro{padding-block:clamp(24px,4vw,56px) clamp(32px,4vw,56px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.intro-text{max-width:620px}
+.hero-art{aspect-ratio:1/1;background:url(images/artcher-backdrop.jpg) center 18%/cover no-repeat;
+  -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+@media (max-width:760px){.intro{grid-template-columns:minmax(0,1fr);gap:8px}.hero-art{order:-1;width:min(100%,420px);justify-self:center}}
 .intro blockquote{margin:0;font-size:clamp(26px,3.6vw,42px);line-height:1.25;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
 .intro cite{display:block;margin-top:14px;font-style:normal;font-size:16px;font-weight:500;color:var(--soft)}
 
@@ -111,7 +110,6 @@ dialog.ask::backdrop{background:rgba(30,26,22,.45)}
 </style>
 </head>
 <body>
-<div class="backdrop" id="backdrop" aria-hidden="true"></div>
 <header>
   <div class="wrap">
     <a class="mark" href="#">Life of Jinas</a>
@@ -122,8 +120,11 @@ dialog.ask::backdrop{background:rgba(30,26,22,.45)}
 <main class="wrap">
   <section id="gallery">
     <div class="intro">
+      <div class="intro-text">
       <blockquote>Painting, to me, is a fascinating form of expression. It flows when I truly allow it to.</blockquote>
       <cite>Jinas</cite>
+      </div>
+      <div class="hero-art" role="img" aria-label="Artcher, a painting by Jinas"></div>
     </div>
     <div class="grid-head"><h2>Paintings</h2><span id="count"></span></div>
     <div class="grid" id="grid"></div>
@@ -229,7 +230,6 @@ const PAINTINGS = [
     const id=location.hash.slice(1), p=PAINTINGS.find(x=>x.id===id);
     const g=document.getElementById('gallery'), v=document.getElementById('painting');
     document.getElementById('top-inquire').href=mail(p&&!isSold(p)&&!isSample(p)?p.title:"Paintings by Jinas");
-    document.getElementById('backdrop').hidden=!!p;
     if(!p){g.hidden=false;v.hidden=true;document.title="Life of Jinas";return}
     const facts=[["Artist","Jinas"],["Year",p.year],["Medium",p.medium],["Size",p.size],["Edition",isSample(p)?"":"Original, one of one"],["Status",p.status]].filter(f=>f[1]);
     v.innerHTML=`
