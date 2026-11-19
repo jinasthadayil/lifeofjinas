@@ -45,8 +45,8 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 /* Opening words */
 .intro{padding-block:clamp(24px,4vw,56px) clamp(32px,4vw,56px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
 .intro-text{max-width:620px}
-.hero-art{aspect-ratio:1/1;background:url(images/artcher-backdrop.jpg) center 18%/cover no-repeat;
-  -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+.hero-art{aspect-ratio:1161/1355;border-radius:18px 18px 0 0;background:url(images/artcher-backdrop.jpg) center/cover no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);mask-image:linear-gradient(to bottom,#000 62%,transparent 100%)}
 @media (max-width:760px){.intro{grid-template-columns:minmax(0,1fr);gap:8px}.hero-art{order:-1;width:min(100%,420px);justify-self:center}}
 .intro blockquote{margin:0;font-size:clamp(26px,3.6vw,42px);line-height:1.25;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
 .intro cite{display:block;margin-top:14px;font-style:normal;font-size:16px;font-weight:500;color:var(--soft)}
