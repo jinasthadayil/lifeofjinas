@@ -127,8 +127,8 @@ footer a{text-decoration:none;font-weight:600;color:var(--ink);overflow-wrap:any
    - id:     short web name, lowercase with hyphens (the page address)
    - image:  the photo's file name in the repository, e.g. "the-observer.jpg"
    - status: "Available", "Sold" or "Sample"
-   SAMPLES: the five blocks marked sample: true are placeholders with
-   generated pictures. Delete each one when a real painting replaces it.
+   SAMPLES: blocks marked sample: true are shown as samples (no price,
+   no inquiry button). Remove "sample: true," and set a status to sell one.
    ===================================================================== */
 const EMAIL = "jinas.official@gmail.com";
 const PAINTINGS = [
@@ -145,11 +145,11 @@ const PAINTINGS = [
       "It is an original, one of one, made to be lived with and reflected on."
     ]
   },
-  { id: "sample-1", sample: true, seed: 10, title: "First Light", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
-  { id: "sample-2", sample: true, seed: 21, title: "Still Water", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
-  { id: "sample-3", sample: true, seed: 32, title: "The Long Road", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
-  { id: "sample-4", sample: true, seed: 43, title: "Quiet Hour", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] },
-  { id: "sample-5", sample: true, seed: 54, title: "Inner Room", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "", description: ["This is a sample entry with a generated picture. Replace it with a real painting."] }
+  { id: "the-cosmic-whale", sample: true, title: "The Cosmic Whale", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/the-cosmic-whale.jpg", description: ["A whale made of night sky drifts past the Earth."] },
+  { id: "the-secret-lover", sample: true, title: "The Secret Lover", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/the-secret-lover.jpg", description: ["In a kelp forest, a mermaid rises toward a diver, holding out a glowing shell."] },
+  { id: "deeper-into-your-mind", sample: true, title: "Deeper Into Your Mind", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/deeper-into-your-mind.jpg", description: ["A boy meditates in the deep sea, surrounded by glowing jellyfish."] },
+  { id: "artcher", sample: true, title: "Artcher", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/artcher.jpg", description: ["An archer whose quiver holds paintbrushes, wearing armour marked Power, Humble, Resilience, Fearless, Message and Gratitude."] },
+  { id: "the-watchful", sample: true, title: "The Watchful", line: "Sample painting", price: "Price on request", status: "Sample", year: "", medium: "", size: "", image: "images/the-watchful.jpg", description: ["A cosmic eye full of stars, with the words \u201cevery effort counts.\u201d"] }
 ];
 /* ===================================================================== */
 
